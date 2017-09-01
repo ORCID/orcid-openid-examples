@@ -1,0 +1,21 @@
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script>
+function getSecure(path) {
+    var jwt = $('#jwt').val();
+	$.ajax({
+	    url: path,
+	    type: 'GET',
+	    beforeSend: function (xhr) {
+	        xhr.setRequestHeader('Authorization', 'Bearer '+jwt);
+	    },
+	    data: {},
+	    success: function (data) { $('#result').text(data);},
+	    error: function (x,status,err) { $('#result').text(x.statusText +" "+x.status);},
+    });
+}
+</script>
+
+<p>Welcome.  Generate a token here: <a href="https://www.jsonwebtoken.io">https://www.jsonwebtoken.io</a></p>
+<input id="jwt" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMDAwLTAwMDAtMDAwMC0wMDAxIiwibmFtZSI6Ik1pZ2h0eSBUb20iLCJhZG1pbiI6dHJ1ZSwianRpIjoiNWRjNzM1NmYtZGM0ZC00ZDg1LTg2ZjUtNGRmZTQ4MDBkMTA1IiwiaWF0IjoxNTA0MTk1NDc3LCJleHAiOjE1MDQyMDAyNjR9.xYUfMBu-QskqE29XbnhuMscykd9vqUinH7hY2IPA_d8"></input>
+<button onclick="getSecure('/secure');">make secure request</button>
+<p id="result"></p>

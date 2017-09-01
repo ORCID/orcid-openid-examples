@@ -1,0 +1,26 @@
+security:
+  oauth2:
+    client:
+      clientId: XXX
+      clientSecret: XXX
+      accessTokenUri: https://sandbox.orcid.org/oauth/token
+      userAuthorizationUri: https://sandbox.orcid.org/oauth/authorize
+      tokenName: access_token
+      scope: openid
+    resource:
+      userInfoUri: https://sandbox.orcid.org/oauth/userinfo
+      #argh - spring uses 'bearer' instead of 'Bearer'.
+      
+    #This only works if the access token is a JWT doh.
+    #resource:
+      #jwt:
+        #key-uri: https://qa.orcid.org/oauth/jwks
+      
+      
+#could extract from JWT, put pem url here: security.oauth2.resource.jwt.key-uri
+#how do we specify where the JWT lives if it's not the access token...
+#here: http://www.baeldung.com/spring-security-openid-connect 
+
+logging:
+  level:
+    ROOT: DEBUG
