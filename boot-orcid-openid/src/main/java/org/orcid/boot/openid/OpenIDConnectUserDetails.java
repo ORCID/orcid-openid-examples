@@ -13,18 +13,18 @@ public class OpenIDConnectUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private String userId;
+    private String name;
     private String username;
     private OAuth2AccessToken token;
 
     /** Takes userinfo from JWT token and turns into a User object
-     * Example JWT: {aud=APP-6LKIJ3I5B1C4YIQP, sub=0000-0002-5062-2209, auth_time=1504100815, iss=https://orcid.org, exp=1504103781, iat=1504103181, jti=e465e13f-50a3-4776-a231-c3432ec52c3e}
+     * Example JWT: {"aud":"APP-6LKIJ3I5B1C4YIQP","sub":"0000-0002-5062-2209","auth_time":1504616151,"iss":"https:\/\/orcid.org","name":"Mr Credit Name","exp":1504617454,"given_name":"Tom","iat":1504616854,"family_name":"Dem","jti":"3b2b662a-2429-4144-a986-06282b88d211"}
      * @param userInfo
      * @param token
      */
     public OpenIDConnectUserDetails(Map<String, String> jwtUserInfo, OAuth2AccessToken token) {
-        this.userId = jwtUserInfo.get("sub");
         this.username = jwtUserInfo.get("sub");
+        this.name = jwtUserInfo.get("name");
         this.token = token;
     }
 
@@ -38,12 +38,12 @@ public class OpenIDConnectUserDetails implements UserDetails {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
-    public String getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public OAuth2AccessToken getToken() {

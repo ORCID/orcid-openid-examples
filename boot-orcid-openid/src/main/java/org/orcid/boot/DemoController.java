@@ -1,5 +1,6 @@
 package org.orcid.boot;
 
+import org.orcid.boot.openid.OpenIDConnectUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +20,8 @@ public class DemoController {
     @ResponseBody
     public final String home() {
         final String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return "Welcome, " + username;
+        final String creditName = ((OpenIDConnectUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getName();
+        return "Welcome, " + creditName + " (" + username + ")";
     }
 
 }
