@@ -1,11 +1,16 @@
 simple-orcid-jwt
 ================
 
-Requests made to /secure on this example must include a JWT token in the Authorization: Bearer HTTP header.
+This app uses ORCID JWT tokens for security.
 
-These tokens are decrypted and/or have their signature checked.  If valid the user details extracted.  This is done in a stateless manner, no server side sessions are created.
+Requests made to /secure on this example must include an ORCID issued JWT token in the Authorization: Bearer HTTP header. These tokens have their signature checked.  If valid the user details extracted.  This is done in a stateless manner, no server side sessions are created.
 
 Requests made to /login will redirect to the ORCID OAuth authentication endpoint and kickstart the OAuth flow.
+
+Configuration
+-------------
+- Add your client secret to application.properties.  
+- Update the orcid.jwks and orcid.authUrl if you want to use a different OpenID provider.
 
 ResourceServerConfig.java
 -------------------------

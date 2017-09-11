@@ -41,7 +41,7 @@ public class DemoController {
     @RequestMapping("/login")
     public final RedirectView loginUrl() {
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(authUrl+"?response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F/index2.html&scope=openid&nonce=whatever&client_id="+clientId);
+        redirectView.setUrl(authUrl+"?response_type=token%20id_token&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F/index2.html&scope=openid&nonce=whatever&client_id="+clientId);
         return redirectView;
     }
 
