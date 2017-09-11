@@ -17,7 +17,7 @@ public class ORCIDUserAuthenticationConverter implements UserAuthenticationConve
     public Authentication extractAuthentication(Map<String, ?> map) {
         @SuppressWarnings("unchecked")
         Map<String, String> m2 = (Map<String, String>) map;
-        ORCIDUserDetails user = new ORCIDUserDetails(m2); 
+        ORCIDUserDetails user = new ORCIDUserDetails(m2);
         return new UsernamePasswordAuthenticationToken(user, "N/A", user.getAuthorities());
     }
 

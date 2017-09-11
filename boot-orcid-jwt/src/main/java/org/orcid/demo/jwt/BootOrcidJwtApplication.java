@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class BootOrcidJwtApplication {
-    
-	public static void main(String[] args) {
-		SpringApplication.run(BootOrcidJwtApplication.class, args);
-	}
+
+    public static void main(String[] args) {
+        SpringApplication.run(BootOrcidJwtApplication.class, args);
+    }
 }
