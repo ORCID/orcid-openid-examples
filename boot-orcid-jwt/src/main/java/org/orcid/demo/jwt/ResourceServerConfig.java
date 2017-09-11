@@ -1,5 +1,12 @@
 package org.orcid.demo.jwt;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.ParseException;
+import java.util.Base64;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -15,6 +22,10 @@ import org.springframework.security.oauth2.provider.token.UserAuthenticationConv
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+
 /** Configures our 'TokenServices'.
  * These are the parts that deal with looking at access tokens and turning them into users.
  * 
@@ -26,9 +37,13 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableWebSecurity
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     
+    @Value("${orcid.jwks}")
+    private String jwksURL;
+    
     @Override
     public void configure(ResourceServerSecurityConfigurer config) {
         config.tokenServices(tokenServices());
+        config.resourceId(null);// don't care about the audience of the token
     }
     
     @Bean
@@ -48,9 +63,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("secret");
+        
+        try{
+            //fetch key from qa.orcid.org.
+            JWKSet publicKeys = JWKSet.load(new URL(jwksURL));
+            byte[] bytes = ((RSAKey)publicKeys.getKeys().get(0)).toPublicKey().getEncoded();
+            String key = "-----BEGIN PUBLIC KEY-----\n" + new String(Base64.getEncoder().encode(bytes))
+                    + "\n-----END PUBLIC KEY-----";        
+            converter.setVerifierKey(key);            
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
+        
+        //converter.setSigningKey("123456");
         ((DefaultAccessTokenConverter) converter.getAccessTokenConverter()).setUserTokenConverter(userAuthenticationConverter());
-        //c.setAccessTokenConverter(ORCIDTokenConverter);
         return converter;
     }
     
