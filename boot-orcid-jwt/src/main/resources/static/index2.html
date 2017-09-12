@@ -1,0 +1,39 @@
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script>
+var tok = "";
+
+function getFragmentParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+        results = regex.exec(window.location.hash);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function getSecure(path) {
+	$.ajax({
+	    url: path,
+	    type: 'GET',
+	    beforeSend: function (xhr) {
+	        xhr.setRequestHeader('Authorization', 'Bearer '+tok);
+	    },
+	    data: {},
+	    success: function (data) { 
+	        $('#result').text(data);
+	        $('#verified').text("TOKEN VERIFIED");
+	    },
+	    error: function (x,status,err) { $('#result').text(x.statusText +" "+x.status);},
+    });
+}
+
+$(document).ready(function() {
+	tok = getFragmentParameterByName("id_token");
+    $('#token').text(tok);
+ });
+</script>
+
+<p>Welcome <span id="name"></span></p>
+<p id="verified">We have a token, but have not yet checked the signature</p>
+<textarea id="token"></textarea>
+<hr />
+<button onclick="getSecure('/secure');">make a secure request to the spring sever</button>
+<p id="result"></p>
