@@ -8,6 +8,10 @@ really-simple-orcid-oauth
 -------------------------
 36 lines of code in a single file.  What could be simpler!
 
+js-orcid-jwt
+------------
+HTML/Javascript client side one-pager.  Sends you to ORCID to authenticate, then confirms your identity by checking the signature of the JWT id_token.
+
 boot-orcid-oauth
 ----------------
 Moves config to an external file, does a few clever things to extract more info from the login, like the user's name.
