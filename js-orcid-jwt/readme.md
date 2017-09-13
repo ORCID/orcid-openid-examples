@@ -12,10 +12,5 @@ Bonus configuration tips
 ------------------------
 This tool is configured to use qa.orcid.org.  If you would like to use the sandbox server, update the following lines:
 
-    var orcidAuthUrl = orcidQAAuthUrl;
-    var orcidCert = orcidQACert;
-
-becomes
-
-    var orcidAuthUrl = orcidSandboxAuthUrl;
-    var orcidCert = orcidSandboxCert;
+    var orcidAuthUrl = "https://sandbox.orcid.org/oauth/authorize";
+    var orcidCert = {"kty":"RSA","e":"AQAB","use":"sig","kid":"sandbox-orcid-org-3hpgosl3b6lapenh1ewsgdob3fawepoj","n":"pl-jp-kTAGf6BZUrWIYUJTvqqMVd4iAnoLS6vve-KNV0q8TxKvMre7oi9IulDcqTuJ1alHrZAIVlgrgFn88MKirZuTqHG6LCtEsr7qGD9XyVcz64oXrb9vx4FO9tLNQxvdnIWCIwyPAYWtPMHMSSD5oEVUtVL_5IaxfCJvU-FchdHiwfxvXMWmA-i3mcEEe9zggag2vUPPIqUwbPVUFNj2hE7UsZbasuIToEMFRZqSB6juc9zv6PEUueQ5hAJCEylTkzMwyBMibrt04TmtZk2w9DfKJR91555s2ZMstX4G_su1_FqQ6p9vgcuLQ6tCtrW77tta-Rw7McF_tyPmvnhQ"};
