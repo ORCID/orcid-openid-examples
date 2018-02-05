@@ -1,0 +1,33 @@
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script>
+//config
+var clientId = "APP-6LKIJ3I5B1C4YIQP";
+var orcidAuthUrl = "https://qa.orcid.org/oauth/authorize";
+  var url = orcidAuthUrl+"?response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F/return_page.html&client_id="+clientId+"&scope=openid&nonce=whatever";
+var authWindow;
+
+//This opens a popup that hits the ORCID OAuth endpoint
+//The endpoint returns to return_page.html, which deocdes the token and returns it to this page
+function getORCID(){
+  if ($("#orcid").val()){
+    return;
+  }
+  authWindow = window.open(url, 'authWindow');
+}
+
+//called on sucessful login
+function onOrcidAuth(token){
+  console.log(token);
+  $("#orcid").val(token.id_path);
+  authWindow.close();
+}
+
+//called if there was a problem logging in.
+function onOrcidAuthFail(token){
+  console.log("failed :(");
+  authWindow.close();
+}
+
+</script>
+<button onclick="getORCID()">Add your ORCID</button>
+<input id="orcid" readonly></input>
