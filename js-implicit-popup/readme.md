@@ -9,6 +9,14 @@ The start_page.html contains a simple form.  A button and a field.
 - return_page.html tells start_page.html their ORCID ID
 - start_page.html updates the form and closes the popup.
 
+To test locally
+---------------
+- use `python -m SimpleHTTPServer 8080` in this directory to start a web server
+- visit http://localhost:8080/start_page.html
+- test
+- update to use your credentials and the live service
+- test
+
 To use in your own system
 -------------------------
 
