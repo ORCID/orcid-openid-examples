@@ -11,7 +11,9 @@ The start_page.html contains a simple form.  A button and a field.
 
 To test locally
 ---------------
-- use `python -m SimpleHTTPServer 8080` in this directory to start a web server
+- start a webserver in this directory
+  - use `python -m SimpleHTTPServer 8080` or
+  - use `http-server` (`npm install http-server -g` to install)
 - visit http://localhost:8080/start_page.html
 - test
 - update to use your credentials and the live service.  Details in the html file.
