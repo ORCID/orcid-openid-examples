@@ -1,11 +1,16 @@
-<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<!-- use bootstrap to make the example nice to look at.  JQuery required to work-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 <script>
-//config
+//ORICD config
 //change to your clientID:
 var clientId = "APP-8SEU3HT2XC35A31D"; 
 //change to "https://orcid.org/oauth/authorize" for the live service:
 var orcidAuthUrl = "https://sandbox.orcid.org/oauth/authorize"; 
-//change to the location on your server:
+//change to the location of the orcid_popup.html page on your server:
 var return_page = "http%3A%2F%2Flocalhost%3A8080%2Forcid_popup.html" 
 var url = orcidAuthUrl+"?response_type=token&redirect_uri="+return_page+"&client_id="+clientId+"&scope=openid&nonce=whatever";
 var authWindow;
@@ -19,16 +24,19 @@ function getORCID(){
   authWindow = window.open(url, 'authWindow');
 }
 
-//called on sucessful login
+//called by orcid_popup.html on sucessful login
 function onOrcidAuth(token){
   console.log(token);
   $("#orcid").val(token.sub);
+  $("#given_name").val(token.given_name);
+  $("#family_name").val(token.family_name);
+  $("#auth_button").hide();
   if (authWindow){
 	  authWindow.close();  	
   }
 }
 
-//called if there was a problem logging in.
+//called by orcid_popup.html if there was a problem logging in.
 function onOrcidAuthFail(){
   console.log("failed :(");
   if (authWindow){
@@ -37,9 +45,18 @@ function onOrcidAuthFail(){
 }
 
 </script>
-<h1>My researcher website</h1>
-<p>Please authenticate your ORCID ID so we can associate your professional activities with your ORCID record</p>
-<form>
-<button onclick="getORCID()">Authenticate your ORCID</button>
-<input id="orcid" readonly></input>
-</form>
+
+<body>
+<div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">My researcher website!</h1>
+      <p>Please authenticate your ORCID ID so we can automatically register your name and associate your professional activities with your ORCID record</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button" onclick="getORCID()" id="auth_button">Authenticate your ORCID</a></p>
+      <form>
+	      <label for="orcid">ORCID iD</label><input id="orcid" readonly class="form-control"></input>
+	      <label for="given_name">Given Name</label><input id="given_name" class="form-control"></input>
+	      <label for="family_name">Family Name</label><input id="family_name" class="form-control"></input>
+	  </form>
+    </div>
+</div>
+</body>
