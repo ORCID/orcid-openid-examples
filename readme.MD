@@ -4,13 +4,17 @@ This repo contains several example applications demonstratng ORCID integration w
 
 All that's required to see them in action are some ORCID API credentials.
 
-really-simple-orcid-oauth
--------------------------
-36 lines of code in a single file.  What could be simpler!
-
 js-orcid-jwt
 ------------
 HTML/Javascript client side one-pager.  Sends you to ORCID to authenticate, then confirms your identity by checking the signature of the JWT id_token.
+
+js-implicit-popup
+-----------------
+Client side only app that uses javascript and a popup to authenticate a user and populate a form
+
+really-simple-orcid-oauth
+-------------------------
+36 lines of code in a single file.  What could be simpler!
 
 boot-orcid-oauth
 ----------------
@@ -23,6 +27,7 @@ Moves some of the boot automagic into the actual code, enables fine grained conf
 simple-orcid-jwt
 ----------------
 This server checks for a JWT access token and uses that to perform stateless auth.
+
 
 Quick start
 -----------
