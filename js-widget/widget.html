@@ -1,0 +1,30 @@
+<script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="orcid-widget.js"></script>
+
+<script>
+	function sayHello(idToken){
+		console.log(idToken);
+		$("#welcome").text("hello "+idToken.given_name+" "+idToken.family_name+" ("+idToken.sub+")");
+	}
+	function sayOops(){
+		$("#welcome").text("Something has gone wrong :(");
+	}
+
+	var config = {
+	"mode":"sandbox",
+	"clientId":"APP-8SEU3HT2XC35A31D",
+	"returnUrl":"http://localhost:8080/widget.html",
+	"onSuccess":sayHello,
+	"onFail":sayOops
+	};
+	$(document).ready(function() {
+		ORCID.init(config);
+	});
+</script>
+
+<body>
+	<div id="orcidWidget"/>
+	<div id="welcome"/>
+</body>
+
