@@ -2,11 +2,11 @@
 <script>
 //config
 //change to your clientID:
-var clientId = "APP-6LKIJ3I5B1C4YIQP"; 
+var clientId = "APP-8SEU3HT2XC35A31D"; 
 //change to "https://orcid.org/oauth/authorize" for the live service:
-var orcidAuthUrl = "https://qa.orcid.org/oauth/authorize"; 
+var orcidAuthUrl = "https://sandbox.orcid.org/oauth/authorize"; 
 //change to the location on your server:
-var return_page = "http%3A%2F%2Flocalhost%3A8080%2F/return_page.html" 
+var return_page = "http%3A%2F%2Flocalhost%3A8080%2Forcid_popup.html" 
 var url = orcidAuthUrl+"?response_type=token&redirect_uri="+return_page+"&client_id="+clientId+"&scope=openid&nonce=whatever";
 var authWindow;
 
@@ -22,7 +22,7 @@ function getORCID(){
 //called on sucessful login
 function onOrcidAuth(token){
   console.log(token);
-  $("#orcid").val(token.id_path);
+  $("#orcid").val(token.sub);
   authWindow.close();
 }
 

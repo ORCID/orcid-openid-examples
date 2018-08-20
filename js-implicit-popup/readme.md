@@ -6,7 +6,7 @@ The start_page.html contains a simple form.  A button and a field.
 - User clicks the button
 - a pop up asks them to log into ORCID
 - Once logged in the pop up sends them to return_page.html
-- return_page.html tells start_page.html their ORCID ID
+- orcid_popup.html tells start_page.html their ORCID ID
 - start_page.html updates the form and closes the popup.
 
 To test locally
