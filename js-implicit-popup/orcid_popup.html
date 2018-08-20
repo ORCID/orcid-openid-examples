@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
 <script>
 //This page takes an ORCID OAuth response and sends the verified id_token to the parent window.
@@ -24,10 +25,13 @@ function checkSig(idToken){
   });
 }
 
-var id_token = getFragmentParameterByName("id_token");
-if (checkSig(id_token)){
-  window.opener.onOrcidAuth(JSON.parse(KJUR.jws.JWS.parse(id_token).payloadPP));      
-}else{
-  window.opener.onOrcidAuthFail(id_token);     
-}
+$( document ).ready(function() {
+	var id_token = getFragmentParameterByName("id_token");
+	if (checkSig(id_token)){
+	  window.opener.onOrcidAuth(JSON.parse(KJUR.jws.JWS.parse(id_token).payloadPP));      
+	}else{
+	  window.opener.onOrcidAuthFail();     
+	}
+	window.close();
+});
 </script>

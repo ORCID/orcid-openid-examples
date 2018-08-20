@@ -23,15 +23,23 @@ function getORCID(){
 function onOrcidAuth(token){
   console.log(token);
   $("#orcid").val(token.sub);
-  authWindow.close();
+  if (authWindow){
+	  authWindow.close();  	
+  }
 }
 
 //called if there was a problem logging in.
-function onOrcidAuthFail(token){
+function onOrcidAuthFail(){
   console.log("failed :(");
-  authWindow.close();
+  if (authWindow){
+	  authWindow.close();  	
+  }
 }
 
 </script>
-<button onclick="getORCID()">Add your ORCID</button>
+<h1>My researcher website</h1>
+<p>Please authenticate your ORCID ID so we can associate your professional activities with your ORCID record</p>
+<form>
+<button onclick="getORCID()">Authenticate your ORCID</button>
 <input id="orcid" readonly></input>
+</form>
