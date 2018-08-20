@@ -11,7 +11,7 @@ Simple javascript library that will create an authentication link and process th
 
 Example config:
 ===============
-  {
+	{
 	"mode":"sandbox",
 	"clientId":"APP-8SEU3HT2XC35A31D",
 	"returnUrl":"http://localhost:8080/widget.html",
@@ -21,7 +21,7 @@ Example config:
   
 Example use:
 ============
-  <script>
+	<script>
 	function sayHello(idToken){
 		alert("hello "+idToken.given_name+" "+idToken.family_name+" "+idToken.sub);
 	}
@@ -31,8 +31,8 @@ Example use:
 	$(document).ready(function() {
 		ORCID.init(config);
 	});
-  </script>
-  <div id="orcidWidget"/>
+	</script>
+	<div id="orcidWidget"/>
   
 Required libraries
 ==================
