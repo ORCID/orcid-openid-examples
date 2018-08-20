@@ -16,7 +16,8 @@ Example config:
 	"clientId":"APP-8SEU3HT2XC35A31D",
 	"returnUrl":"http://localhost:8080/widget.html",
 	"onSuccess":sayHello,
-	"onFail":sayOops
+	"onFail":sayOops,
+	"auto":true
 	}
   
 Example use:
@@ -41,3 +42,10 @@ Requries the kjur crypto library and jquery (2+)
 	<script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 	<script src="orcid-widget.js"></script>
+
+Non-automatic use
+=================
+You can pass "auto":false as a config parameter and handle button construction and response checking yourself.  This prevents the library from automatically populating the link and processing responses.
+
+- call ``ORCID.buildReturnUrl(nonce)`` to generate a link to our Oauth servers.  Returns a String with the link.
+- call ``ORCID.handleResponse()`` to process the response and call your callbacks.

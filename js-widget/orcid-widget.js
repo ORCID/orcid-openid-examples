@@ -36,15 +36,18 @@
 		}
 		pubKey = KEYUTIL.getKey(key);
 		
-		//check for response - if exists process it
-		if (getFragmentParameterByName("id_token")){
-			handleResponse();
+		if (config.auto){
+			//check for response - if exists process it
+			if (getFragmentParameterByName("id_token")){
+				handleResponse();
+			}
+
+			//if we don't have a signed in user, show sign in button
+			if (!signedInOrcid){
+				createButton('#orcidWidget');
+			}
 		}
 
-		//if we don't have a signed in user, show sign in button
-		if (!signedInOrcid){
-			createButton('#orcidWidget');
-		}
 	}
 
 	function createButton(elementId){
@@ -93,7 +96,9 @@
 	global.ORCID = {
 	 	init:init,
 	 	signedInOrcid:signedInOrcid,
-	 	signedInIdToken:signedInIdToken
+	 	signedInIdToken:signedInIdToken,
+	 	handleResponse:handleResponse,
+	 	buildReturnUrl:buildReturnUrl
 	}
 
 })(this);
