@@ -3,8 +3,10 @@ js widget
 
 Simple javascript library that will create an authentication link and process the response.  Simply:
 
+- register for a n ORCID client id if you haven't done so already
+- include the script tags
 - create a config, 
-- add a <div id="orcidWidget"/> to your page where you want the link to appear
+- add ``<div id="orcidWidget"/>`` to your page where you want the link to appear
 - write a function that does something with the response
 
 Example config:
@@ -31,3 +33,11 @@ Example use:
 	});
   </script>
   <div id="orcidWidget"/>
+  
+Required libraries
+==================
+Requries the kjur crypto library and jquery (2+)
+
+	<script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<script src="orcid-widget.js"></script>
