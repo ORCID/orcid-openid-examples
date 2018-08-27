@@ -4,7 +4,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+<body>
+<div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">My researcher website!</h1>
+      <p>Please authenticate your ORCID ID so we can automatically register your name and associate your professional activities with your ORCID record</p>
+<p><a class="btn btn-primary btn-lg" href="#" role="button" onclick="getORCID()" id="auth_button">Authenticate your ORCID</a></p>
+	      <label for="orcid">ORCID iD</label><input id="orcid" class="form-control"></input>
+
 <script>
+$('#orcid').attr('readonly', 'true');
 //ORICD config
 //change to your clientID:
 var clientId = "APP-8SEU3HT2XC35A31D"; 
@@ -46,14 +55,7 @@ function onOrcidAuthFail(){
 
 </script>
 
-<body>
-<div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">My researcher website!</h1>
-      <p>Please authenticate your ORCID ID so we can automatically register your name and associate your professional activities with your ORCID record</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button" onclick="getORCID()" id="auth_button">Authenticate your ORCID</a></p>
-      <form>
-	      <label for="orcid">ORCID iD</label><input id="orcid" readonly class="form-control"></input>
+
 	      <label for="given_name">Given Name</label><input id="given_name" class="form-control"></input>
 	      <label for="family_name">Family Name</label><input id="family_name" class="form-control"></input>
 	  </form>
