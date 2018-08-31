@@ -1,6 +1,6 @@
 ORCID OpenID Connect and implicit OAuth examples
 ================================================
-This repo contains several example applications demonstratng ORCID integration with Spring boot.  They vary in aproach and complexity.
+This repo contains several example applications demonstrating ORCID integration with javascript or Spring boot.  They vary in aproach and complexity.
 
 All that's required to see them in action are some ORCID API credentials.
 
@@ -34,8 +34,8 @@ simple-orcid-jwt
 Spring boot Java implementation.  
 This server checks for a JWT access token and uses that to perform stateless auth.
 
-Quick start
------------
+Quick start for Spring boot versions
+------------------------------------
 0. Choose a variation from above
 1. Modify application.properties to contain your API credentials
 2. mvn spring-boot:run, ./mvnw spring-boot:run or import it into eclipse/sts or your favourite IDE.
