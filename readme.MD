@@ -1,10 +1,10 @@
 ORCID OpenID Connect and implicit OAuth examples
 ================================================
-This repo contains several example applications demonstrating ORCID integration with javascript or Spring boot.  They vary in aproach and complexity.
+This repo contains several example applications demonstrating ORCID integration with javascript or Spring boot.  They vary in aproach and complexity.  es.  
 
 All that's required to see them in action are some ORCID API credentials.
 
-For more information on ORCID and OpenID Connect see the [ORCID OpenID connect documentation](https://github.com/ORCID/ORCID-Source/blob/master/orcid-web/ORCID_AUTH_WITH_OPENID_CONNECT.md)
+For more information on ORCID and OpenID Connect see the [ORCID OpenID connect documentation](https://github.com/ORCID/ORCID-Source/blob/master/orcid-web/ORCID_AUTH_WITH_OPENID_CONNECT.md). 
 
 js-orcid-jwt
 ------------
@@ -41,3 +41,7 @@ Quick start for Spring boot versions
 0. Choose a variation from above
 1. Modify application.properties to contain your API credentials
 2. mvn spring-boot:run, ./mvnw spring-boot:run or import it into eclipse/sts or your favourite IDE.
+
+Obtaining update permissions
+----------------------------
+Note that all of the examples use implicit OAuth, and can therfore only request the openid/authenticate scope. To gather update permissions you must use the authorization_code response_type.  When doing so, the id_token is made available via the token endpoint. See the [ORCID OpenID connect documentation](https://github.com/ORCID/ORCID-Source/blob/master/orcid-web/ORCID_AUTH_WITH_OPENID_CONNECT.md) for more information.
