@@ -4,6 +4,8 @@ This repo contains several example applications demonstrating ORCID integration 
 
 All that's required to see them in action are some ORCID API credentials.
 
+For more information on ORCID and OpenID Connect see the [ORCID OpenID connect documentation](https://github.com/ORCID/ORCID-Source/blob/master/orcid-web/ORCID_AUTH_WITH_OPENID_CONNECT.md)
+
 js-orcid-jwt
 ------------
 HTML/Javascript client side one-pager.  
