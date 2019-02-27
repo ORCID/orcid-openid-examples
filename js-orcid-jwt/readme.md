@@ -1,4 +1,4 @@
-Simmple implicit OAuth with JWT
+Simple implicit OAuth with JWT
 -------------------------------
 This one-pager sends you to ORCID to authenticate, then cofirms your identity by checking the returned JWT signature.
 
