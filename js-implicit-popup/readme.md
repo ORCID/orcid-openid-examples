@@ -12,7 +12,8 @@ The start_page.html contains a simple form.
 To test locally
 ---------------
 - start a webserver in this directory
-  - use `python -m SimpleHTTPServer 8080` or
+  - Python2: use `python -m SimpleHTTPServer 8080` or
+  - Python3: use `python3 -m http.server 8080` or
   - use `http-server` (`npm install http-server -g` to install)
 - visit http://localhost:8080/start_page.html
 - test
